@@ -1,0 +1,88 @@
+<form [formGroup]="loginForm">
+<div class="form-row">
+      <div class="form-group">
+        <label for="number">Id: </label>
+        <input id="id" class="form-control" formControlName="id" /><br/>
+      </div><br>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="name">Name: </label>
+        <input id="name" class="form-control" type="text" formControlName="name" /><br/>
+      </div><br>
+    </div>
+  
+    <div class="form-row">
+      <div class="form-group">
+        <label>Address:</label>
+        <input id="address" type="text" class="form-control"  formControlName="address" /><br/>
+      </div><br>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="email">email: </label>
+        <input id="email" type="email" class="form-control"  formControlName="email" /><br/>
+      </div><br>
+    </div>
+  
+    <div class="form-row">
+      <div class="form-group">
+        <label>Choose a date: </label>
+        <input type="date"  formControlName="date" class="form-control"  placeholder="select Date" />
+      </div><br>
+    </div>
+  
+    <div class="form-row">
+      <div class="form-group">
+        <label>Choose a file </label>
+        <input type="file" formControlName="Photoctr" ng2FileSelect [uploader]= "uploader" class="form-control" />
+        <!-- <img src="{{row.folderPath}}" style="height: 120px; width: 120px;" /> -->
+      </div><br>
+    </div>
+    
+  
+    <div class="form-row">
+      <div class="form-group">
+        <label>info</label>
+        <textarea formControlName="description" ></textarea>
+      </div><br>
+    </div>
+  
+  
+  
+  <div>
+   
+    <button [disabled]="listOpen" (click)="Test_Insert()">insert</button>
+   <button (click)="toggleList()" (click)="Test_Select_List_PK()">list </button>
+    <button [disabled]="!listOpen" (click)="Test_Update()">update</button>
+    <button [disabled]="!listOpen" (click)="delete(id)">delete</button>
+    <button>cancel</button>
+    <button>exit</button>
+    
+  </div>
+  
+  <div>
+    <div class="loader" *ngIf="isLoading"></div>
+    <table *ngIf="!isLoading">
+        <tr >
+            <th >no</th>
+            <th>name</th>
+            <th>address</th>
+            <th>email</th>
+            <th>date</th>
+            <th>photoPath</th>
+            <th>info</th>
+           
+        </tr>
+  <tr *ngFor="let item of dataSource" (click)="RowSelected(item)">
+            <th>{{item.pkTest}}</th>
+            <th>{{item.name}}</th>
+            <th>{{item.address}}</th>
+            <th>{{item.email}}</th>
+            <th>{{item.dob}}</th> 
+            <th><img src="{{item.folderPath}}" style="width: 100px; height: 100px;"> </th>
+            <th>{{item.info}}</th> 
+        </tr>
+    </table>
+  </div>
